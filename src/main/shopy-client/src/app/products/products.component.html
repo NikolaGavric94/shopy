@@ -1,0 +1,112 @@
+<div id="products-list_component">
+    <div class="container">
+        <!-- Filters -->
+        <!-- Categories -->
+        <div class="row filter-container">
+            <div class="col-md-3">
+                <div class="filter-container-row col-md-12">
+                    <div class="col-md-12 filter-container-row-box">
+                        <h4 class="filter-container-row-box-header">Categories</h4>
+                        <ul class="list-group" *ngIf="categories">
+                            <li *ngFor="let category of (categories | sortBy)" class="list-group-item" (click)="onCategoryChange(category)" [ngClass]="{'filter-container-row-box-item-selected': filter.category === category.code}">
+                                <a class="btn btn-link color-black">{{ category.name }}</a>
+                            </li>
+                            <li class="list-group-item" (click)="onCategoryChange('Hot Deal')" [ngClass]="{'filter-container-row-box-item-selected': filter.isHotDeal}">
+                                <a class="btn btn-link color-black">Hot Deals</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="filter-container-row col-md-12">
+                    <div class="col-md-12 filter-container-row-box">
+                        <h4 class="filter-container-row-box-header">Price filter</h4>
+                        <ul class="list-group">
+                            <li class="list-group-item margin-bottom-10">
+                                <p-slider [(ngModel)]="filter.priceRange" [min]="filter.options.min" [max]="filter.options.max" [range]="true" (onChange)="onPriceChange()"></p-slider>
+                            </li>
+                            <li class="list-group-item">
+                                From
+                                <input type="number" [(ngModel)]="filter.priceRange[0]" (keyup)="onKeyUpRange($event, 0)" class="form-control price-range-control"
+                                /> To
+                                <input type="number" [(ngModel)]="filter.priceRange[1]" (keyup)="onKeyUpRange($event, 1)" class="form-control price-range-control"
+                                />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="filter-container-row col-md-12">
+                    <div class="col-md-12 filter-container-row-box">
+                        <h4 class="filter-container-row-box-header">Sizes</h4>
+                        <ul class="list-group" *ngIf="sizes">
+                            <li *ngFor="let size of (sizes | sortBy)" class="list-group-item">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="size[]" (change)="onSizeChange(size)" [checked]="filter.sizes.indexOf(size.code) !== -1" /> {{ size.name }}
+                                    </label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Napravi animaciju u angularu i u nju stavi trenutni proizvod, a u html ovde ubaci tu animaciju -->
+                <div class="filter-container-row col-md-12">
+                    <div class="col-md-12 filter-container-row-box">
+                        <h4 class="filter-container-row-box-header">Brands</h4>
+                        <ul class="list-group" *ngIf="brands">
+                            <li *ngFor="let brand of (brands | sortBy)" class="list-group-item">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="brand[]" (change)="onBrandChange(brand)" [checked]="filter.brands.indexOf(brand.code) !== -1" /> {{ brand.name }}
+                                    </label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9 product-container" *ngIf="products">
+                <div *ngFor="let product of (products | sortBy); let productIndex = index;" class="col-md-4 product-container-item text-center animated zoomIn" (mouseenter)="hoveredElementIndex=productIndex" (mouseleave)="hoveredElementIndex=null">
+                    <div class="col-md-12">
+                        <div class="center-block product-container-item-image">
+                            <img class="img-responsive animated zoomIn" src="{{ product.imageUrl }}?text={{ product.brand.name }}+{{ product.name }}" />
+                        </div>
+                        <div class="product-container-item-name">
+                            {{ product.name }}
+                        </div>
+
+                        <div class="product-container-item-sizes">
+                            <span *ngIf="product.sizes">sizes :</span>
+                            <span *ngFor="let size of product.sizes; let ind = index;" class="padding-left-5">
+                                <span>{{ size.code.toLowerCase() }}</span>
+                                <span class="padding-left-5">{{ (product.sizes.length > ind+1)?'-':'' }}</span>
+                            </span>
+                        </div>
+                        <div class="product-container-item-colors">
+                            <i *ngFor="let color of product.colors" class="fas fa-circle padding-left-5" [style.color]="color.code"></i>
+                        </div>
+
+                        <div class="product-container-item-price">
+                            <div *ngIf="productIndex != hoveredElementIndex" class="animated fadeIn">
+                                {{ product.price }}$
+                            </div>
+                            <div *ngIf="productIndex === hoveredElementIndex" class="product-container-item-price-icons animated fadeIn">
+                                <a href="javascript:void(0)"><i class="fas fa-globe"></i></a>
+                                <a href="javascript:void(0)"><i class="fas fa-cart-plus"></i></a>
+                                <a href="javascript:void(0)"><i class="far fa-heart"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 product-container-loader text-center" *ngIf="filter.page < (filter.options.pageCount - 1)">
+                    <a class="btn btn-link" (click)="loadMore()">
+                        <i class="fas fa-circle"></i>
+                        <i class="fas fa-circle"></i>
+                        <i class="fas fa-circle"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- END -->
+        <!-- END Filters -->
+    </div>
+</div>

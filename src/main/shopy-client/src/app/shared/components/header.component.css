@@ -1,0 +1,65 @@
+#header_component {
+  background-color: #f8f8f8;
+  padding-bottom: 55px; }
+  #header_component .cart-badge {
+    top: -22px;
+    left: 7px;
+    position: absolute; }
+  #header_component .fas.fa-shopping-cart {
+    position: relative; }
+  #header_component .fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999; }
+  #header_component .icons-container {
+    line-height: 3; }
+    #header_component .icons-container .icons-container-list > li {
+      padding-right: 10px; }
+    #header_component .icons-container .icons-container-social li a {
+      padding-right: 5px;
+      padding-left: 5px; }
+  #header_component > .navbar-default {
+    border-radius: 0; }
+    #header_component > .navbar-default:not(:nth-child(1)) {
+      background-color: white; }
+      #header_component > .navbar-default:not(:nth-child(1)) a {
+        color: #777; }
+    #header_component > .navbar-default #navigation-collapse a {
+      line-height: 8; }
+    #header_component > .navbar-default #navigation-collapse li:hover a {
+      color: orange; }
+    #header_component > .navbar-default .navbar-brand {
+      height: auto; }
+    #header_component > .navbar-default .active > a {
+      color: orange;
+      background-color: transparent; }
+    #header_component > .navbar-default:first-child {
+      margin-bottom: 0;
+      border-bottom: 0; }
+  @media only screen and (max-width: 760px) {
+    #header_component .navbar-default #navigation-collapse a {
+      line-height: normal;
+      text-align: center; }
+    #header_component .icons-container-list {
+      display: inline-block;
+      width: 66%; }
+      #header_component .icons-container-list li,
+      #header_component .icons-container-list li > a {
+        display: inline-block; }
+    #header_component .navigation-action-links {
+      display: none; }
+    #header_component .icons-container-social {
+      display: inline-block;
+      width: 33%;
+      text-align: right;
+      left: 40px;
+      position: relative; }
+      #header_component .icons-container-social li,
+      #header_component .icons-container-social li > a {
+        display: inline-block; }
+    #header_component .navbar-brand {
+      display: none; } }
+
+/*# sourceMappingURL=header.component.css.map */

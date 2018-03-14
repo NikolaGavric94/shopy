@@ -1,0 +1,118 @@
+#header_component {
+    background-color: #f8f8f8;
+    padding-bottom: 55px;
+
+    .cart-badge {
+        top: -22px;
+        left: 7px;
+        position: absolute;
+    }
+
+    .fas.fa-shopping-cart {
+        position: relative;
+    }
+
+    .fixed {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 9999;
+    }
+
+    .icons-container {
+        line-height: 3;
+
+        .icons-container-list {
+            > li {
+                padding-right: 10px;
+            }
+        }
+
+        .icons-container-social {
+            li {
+                a {
+                    padding-right: 5px;
+                    padding-left: 5px;
+                }
+            }
+        }
+    }
+
+    > .navbar-default {
+        border-radius: 0;
+
+        &:not(:nth-child(1)) {
+            background-color: white;
+            a {
+                color: #777;
+            }
+        }
+
+        #navigation-collapse {
+            a {
+                line-height: 8;
+            }
+
+            li {
+                &:hover {
+                    a {
+                        color: orange;
+                    }
+                }
+            }
+        }
+
+        .navbar-brand {
+            height: auto;
+        }
+
+        .active > a {
+            color: orange;
+            background-color: transparent;
+        }
+
+        &:first-child {
+            margin-bottom: 0;
+            border-bottom: 0;
+        }
+    }
+
+    @media only screen and (max-width: 760px) {
+        .navbar-default {
+            #navigation-collapse {
+                a {
+                    line-height: normal;
+                    text-align: center;
+                }
+            }
+        }
+        .icons-container-list {
+            display: inline-block;
+            width: 66%;
+
+            li,
+            li > a {
+                display: inline-block;
+            }
+        }
+        .navigation-action-links {
+            display: none;
+        }
+        .icons-container-social {
+            display: inline-block;
+            width: 33%;
+            text-align: right;
+            left: 40px;
+            position: relative;
+
+            li,
+            li > a {
+                display: inline-block;
+            }
+        }
+        .navbar-brand {
+            display: none;
+        }
+    }
+}
